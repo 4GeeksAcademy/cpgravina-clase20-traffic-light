@@ -1,26 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
-
-//create your first component
 const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
+  const [selectedColor, setSelectedColor] = useState("");
+
+  function handleClick(color) {
+    if (selectedColor === color) {
+      setSelectedColor("");
+    } else {
+      setSelectedColor(color); 
+    }
+  }
+
+  return (
+    <div className="container" id="main-container">
+      <div
+        id="traffic-top"
+        className="bg-dark d-flex justify-content-center m-auto"
+        style={{ height: "10rem", width: "3rem" }}
+      ></div>
+      <div
+        id="traffic-lights-container"
+        className="m-auto bg-dark d-flex flex-column justify-content-center align-items-center"
+        style={{ height: "30rem", width: "15rem" }}
+      >
+        <div
+          className={`my-2 btn rounded-circle shadow-lg btn-success ${selectedColor === "green" ? "border-light border-3" : ""}`}
+          style={{ height: "10rem", width: "13rem" }}
+          onClick={() => handleClick("green")}
+        >
+        </div>
+        <div
+          className={`my-2 btn rounded-circle btn-warning ${selectedColor === "orange" ? "border-light border-3" : ""}`}
+          style={{ height: "10rem", width: "13rem" }}
+          onClick={() => handleClick("orange")}
+        >
+        </div>
+        <div
+          className={`my-2 btn rounded-circle btn-danger ${selectedColor === "red" ? "border-light border-3" : ""}`}
+          style={{ height: "10rem", width: "13rem" }}
+          onClick={() => handleClick("red")}
+        >
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Home;
